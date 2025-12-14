@@ -18,6 +18,7 @@ extensions = [
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
     'myst_parser',  # enable Markdown (MyST) support
+    'sphinx.ext.napoleon',  # support Google/NumPy style docstrings
 ]
 
 # Ensure Sphinx treats .md files as valid sources
@@ -37,6 +38,26 @@ intersphinx_mapping = {
 intersphinx_disabled_domains = ['std']
 
 templates_path = ['_templates']
+
+# Enable some useful MyST extensions for better Markdown support
+myst_enable_extensions = [
+    'deflist',
+    'html_admonition',
+    'html_image',
+    'colon_fence',
+    'smartquotes',
+    'substitution',
+    'replacements',
+    'linkify',
+]
+# Create heading anchors for easier linking from Markdown headings
+myst_heading_anchors = 3
+
+# Autosummary: automatically generate stub pages
+autosummary_generate = True
+
+# Static files (e.g., for custom CSS)
+html_static_path = ['_static']
 
 # -- Options for HTML output
 
