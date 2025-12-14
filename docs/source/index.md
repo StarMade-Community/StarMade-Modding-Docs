@@ -3,8 +3,7 @@
 ```{toctree}
 :maxdepth: 2
 :caption: Introduction
-index
-building-starmade
+introduction/building-starmade
 ```
 
 # Introduction

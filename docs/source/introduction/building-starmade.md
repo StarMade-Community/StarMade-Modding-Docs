@@ -6,7 +6,7 @@ description: "Instructions for building the StarMade codebase from source (for i
 
 # Building StarMade from source
 
-This page is intended for developers who have access to the StarMade source repository. If you are looking for general instructions on how to mod StarMade, see the [modding basics](modding-basics.md) page.
+This page is intended for developers who have access to the StarMade source repository. If you are looking for general instructions on how to mod StarMade, see the [modding basics](../modding-basics.md) page.
 
 Most players don't have access to the upstream StarMade source repository, so these instructions are only useful for internal development and contributors.
 
