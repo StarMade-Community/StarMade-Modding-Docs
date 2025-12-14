@@ -4,6 +4,7 @@
 
 project = 'StarMade Modding Documentation'
 author = 'StarLoader Team'
+copyright = '2025, Schine GmbH and contributors'
 
 release = '1.0.0'
 version = '0.204.700'
