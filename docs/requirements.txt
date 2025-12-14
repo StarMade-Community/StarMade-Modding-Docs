@@ -11,3 +11,4 @@ sphinxext-opengraph
 sphinxcontrib-mermaid
 sphinx-design
 sphinx-tabs
+markdown-it-py[linkify]
