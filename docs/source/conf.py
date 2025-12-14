@@ -57,7 +57,7 @@ myst_heading_anchors = 3
 autosummary_generate = True
 
 # Static files (e.g., for custom CSS)
-html_static_path = ['_static']
+html_static_path = []
 
 # -- Options for HTML output
 
