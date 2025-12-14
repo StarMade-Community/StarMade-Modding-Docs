@@ -46,8 +46,14 @@ jobs:
         run: |
           python -m sphinx -M html source build/html -q
 
+      - name: Verify built HTML
+        run: |
+          echo "Listing built docs at docs/build/html"
+          ls -la docs/build/html || true
+          if [ ! -f docs/build/html/index.html ]; then echo "ERROR: docs/build/html/index.html not found" >&2; exit 1; fi
+
       - name: Upload Pages artifact
-        if: ${{ github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master') }}
+        if: ${{ github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master') || github.event_name == 'workflow_dispatch' }}
         uses: actions/upload-pages-artifact@v4
         with:
           path: docs/build/html
@@ -62,7 +68,7 @@ jobs:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
     needs: build-docs
-    if: ${{ github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master') }}
+    if: ${{ github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master') || github.event_name == 'workflow_dispatch' }}
     steps:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
