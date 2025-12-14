@@ -2,15 +2,9 @@
 
 ```{toctree}
 :maxdepth: 2
-
-introduction/index
-getting-started/index
-modding-basics
-events
-mod-template
-miscellaneous
+:caption: Introduction
+index
 building-starmade
-gui/customguis
 ```
 
 # Introduction

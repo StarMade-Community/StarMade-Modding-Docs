@@ -47,15 +47,29 @@ jobs:
           # Build HTML directly into build/html. Using `-M html` with outputdir=build/html creates build/html/html.
           python -m sphinx -b html source build/html -q
 
-      - name: Verify built HTML
+      - name: Inspect built HTML
         run: |
           echo "Listing built docs at docs/build/html"
           ls -la docs/build/html || true
-          # accept index at either docs/build/html/index.html or docs/build/html/html/index.html
-          if [ -f docs/build/html/index.html ]; then echo "Found index at docs/build/html/index.html"; exit 0; fi
-          if [ -f docs/build/html/html/index.html ]; then echo "Found index at docs/build/html/html/index.html"; exit 0; fi
-          echo "ERROR: index.html not found in docs/build/html or docs/build/html/html" >&2
-          exit 1
+          if [ -f docs/build/html/index.html ]; then echo "index located at docs/build/html/index.html"; fi
+          if [ -f docs/build/html/html/index.html ]; then echo "index located at docs/build/html/html/index.html"; fi
+
+      - name: Normalize built HTML layout
+        run: |
+          # If Sphinx created a nested html/ directory (common when using -M), move its contents up so the artifact root contains index.html
+          if [ -d docs/build/html/html ]; then
+            echo "Found nested docs/build/html/html — moving contents up"
+            shopt -s dotglob || true
+            mv docs/build/html/html/* docs/build/html/ || true
+            rm -rf docs/build/html/html || true
+            echo "Moved nested html contents to docs/build/html"
+          else
+            echo "No nested html directory found"
+          fi
+
+      - name: Assert index exists
+        run: |
+          if [ ! -f docs/build/html/index.html ]; then echo "ERROR: docs/build/html/index.html not found" >&2; exit 1; fi
 
       - name: Upload Pages artifact
         if: ${{ github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master') || github.event_name == 'workflow_dispatch' }}

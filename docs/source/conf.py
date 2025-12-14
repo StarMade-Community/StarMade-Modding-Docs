@@ -2,12 +2,11 @@
 
 # -- Project information
 
-project = 'Lumache'
-copyright = '2021, Graziella'
-author = 'Graziella'
+project = 'StarMade Modding Documentation'
+author = 'StarLoader Team'
 
-release = '0.1'
-version = '0.1.0'
+release = '1.0.0'
+version = '0.204.700'
 
 # -- General configuration
 
