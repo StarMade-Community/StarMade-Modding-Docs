@@ -17,7 +17,18 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
+    'myst_parser',  # enable Markdown (MyST) support
 ]
+
+# Ensure Sphinx treats .md files as valid sources
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.md': 'markdown',
+}
+
+# Newer Sphinx versions use 'root_doc'; keep both for compatibility
+root_doc = 'index'
+master_doc = 'index'
 
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
