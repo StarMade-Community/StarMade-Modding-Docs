@@ -1,17 +1,18 @@
 # Table of Contents
-- [Introduction](#introduction)
-    - [StarMade](#starmade)
-    - [StarLoader](#starloader)
-    - [StarLoader for Non-Modders](#starloader-for-non-modders)
-    - [Downloading and Installing Mods](#downloading-and-installing-mods)
-- [Modding Basics](modding-basics.md)(Todo)
-  - [Setup](modding-basics.md#setup)(Todo)
-- [Events](events.md)(Todo)
-  - [Event Listeners](events.md#event-listeners)(Todo)
-  - [Fast Listeners](events.md#fast-listeners)(Todo)
-- [Mod Template](mod-template.md)(Todo)
-- [Miscellaneous](miscellaneous.md)
-  - [Building StarMade](building-starmade.md#building-starmade)
+
+```{toctree}
+:maxdepth: 2
+
+introduction/index
+getting-started/index
+modding-basics
+events
+mod-template
+miscellaneous
+building-starmade
+gui/customguis
+```
+
 # Introduction
 ## StarMade
 StarMade is a 3D voxel space sandbox game that allows players to build and explore in a vast universe.
@@ -35,5 +36,3 @@ install, and enable them for you before joining the server. Note: Certain mods r
 soft-restart to apply changes. If a mod is marked as "core_mod", "requires_class_resize", or "hard_load_all_classes"
 in the mod.json file, a soft-restart is required to apply the changes. In this case, the game will automatically perform 
 this function for you and then will directly connect you to the server.
-
-You can also manually install mods by placing the mod jar in the "mods" folder located in the StarMade game directory.
