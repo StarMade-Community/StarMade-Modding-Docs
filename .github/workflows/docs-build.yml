@@ -44,13 +44,18 @@ jobs:
       - name: Build Sphinx docs
         working-directory: docs
         run: |
-          python -m sphinx -M html source build/html -q
+          # Build HTML directly into build/html. Using `-M html` with outputdir=build/html creates build/html/html.
+          python -m sphinx -b html source build/html -q
 
       - name: Verify built HTML
         run: |
           echo "Listing built docs at docs/build/html"
           ls -la docs/build/html || true
-          if [ ! -f docs/build/html/index.html ]; then echo "ERROR: docs/build/html/index.html not found" >&2; exit 1; fi
+          # accept index at either docs/build/html/index.html or docs/build/html/html/index.html
+          if [ -f docs/build/html/index.html ]; then echo "Found index at docs/build/html/index.html"; exit 0; fi
+          if [ -f docs/build/html/html/index.html ]; then echo "Found index at docs/build/html/html/index.html"; exit 0; fi
+          echo "ERROR: index.html not found in docs/build/html or docs/build/html/html" >&2
+          exit 1
 
       - name: Upload Pages artifact
         if: ${{ github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master') || github.event_name == 'workflow_dispatch' }}
